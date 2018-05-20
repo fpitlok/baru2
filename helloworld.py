@@ -391,7 +391,8 @@ def helpmessage():
                     "╠ " + key + "SearchMusic 「Search」" + "\n" + \
                     "╠ " + key + "SearchLyric 「Search」" + "\n" + \
                     "╠ " + key + "SearchImage 「Search」" + "\n" + \
-                    "╚══[ Copyright @Zero-Cool404 ]"
+                    "╠ " + key + "Sholat「Location」" + "\n" + \
+                    "╚══[ BOT VERSI 1.1.3 ]"
     return helpMessage
 
 def helptexttospeech():
@@ -569,7 +570,7 @@ def helptranslate():
                     "╠ " + key + "zu : zulu" + "\n" + \
                     "╠ " + key + "fil : Filipino" + "\n" + \
                     "╠ " + key + "he : Hebrew" + "\n" + \
-                    "╚══[ Copyright @Zero-Cool404 ]" + "\n" + "\n\n" + \
+                    "╚══[ BOT VERSI 1.1.3 ]" + "\n" + "\n\n" + \
                     "Contoh : " + key + "tr-id Zero"
     return helpTranslate
 
@@ -643,9 +644,9 @@ def clientBot(op):
                                     client.sendMessage(to, "Berhasil mengubah key command menjadi [ {} ]".format(str(key).lower()))
                             elif cmd == "speed":
                                 start = time.time()
-                                client.sendMessage(to, "Benchmarking...")
+                                client.sendMessage(to, "Loading...")
                                 elapsed_time = time.time() - start
-                                client.sendMessage(to, "[ Speed ]\nKecepatan mengirim pesan {} detik".format(str(elapsed_time)))
+                                client.sendMessage(to, "[ Speed ]\n... {} Detik".format(str(elapsed_time)))
                             elif cmd == "runtime":
                                 timeNow = time.time()
                                 runtime = timeNow - botStart
@@ -1220,7 +1221,7 @@ def clientBot(op):
                                     client.sendMessage(to, str(ret_))
                                 except Exception as error:
                                     logError(error)
-                            elif cmd.startswith("checkpraytime "):
+                            elif cmd.startswith("Sholat "):
                                 separate = msg.text.split(" ")
                                 location = msg.text.replace(separate[0] + " ","")
                                 r = requests.get("http://api.corrykalam.net/apisholat.php?lokasi={}".format(location))
