@@ -31,7 +31,8 @@ settings = {
     "checkContact": False,
     "checkPost": False,
     "checkSticker": False,
-    "changePictureProfile": False,
+    "changePictureProfile": False,  
+    "Sider":{},
     "changeGroupPicture": [],
     "keyCommand": "",
     "myProfile": {
@@ -55,6 +56,12 @@ read = {
     "readMember": {},
     "readTime": {}
 }
+
+cctv = {
+    "cyduk":{},
+    "point":{},
+    "sidermem":{}
+}    
 
 list_language = {
     "list_textToSpeech": {
@@ -1145,6 +1152,25 @@ def clientBot(op):
                                     pass
                                 else:
                                     client.sendMessage(receiver,"Lurking belum diaktifkan")
+#==================#
+            elif cmd == "Sider on":
+                try:
+                    del cctv['point'][msg.to]
+                    del cctv['sidermem'][msg.to]
+                    del cctv['cyduk'][msg.to]
+                except:
+                    pass
+                cctv['point'][msg.to] = msg.id
+                cctv['sidermem'][msg.to] = ""
+                cctv['cyduk'][msg.to]=True
+                wait["Sider"] = True
+                
+            elif cmd == "Sider off":
+                if msg.to in cctv['point']:
+                    cctv['cyduk'][msg.to]=False
+                    wait["Sider"] = False
+
+#============#
                             elif cmd.startswith("mimicadd"):
                                 targets = []
                                 key = eval(msg.contentMetadata["MENTION"])
@@ -1678,7 +1704,46 @@ def clientBot(op):
     except Exception as error:
         logError(error)
         traceback.print_tb(error.__traceback__)
+#=============Tambah Fitur#
+        if op.type == 55:
+	    try:
+	      group_id = op.param1
+	      user_id=op.param2
+	      subprocess.Popen('echo "'+ user_id+'|'+str(op.createdTime)+'" >> dataSeen/%s.txt' % group_id, shell=True, stdout=subprocess.PIPE, )
+	    except Exception as e:
+	      print e
+	      
+        if op.type == 55:
+                try:
+                    if cctv['cyduk'][op.param1]==True:
+                        if op.param1 in cctv['point']:
+                            Name = cl.getContact(op.param2).displayName
+                            Name = ki.getContact(op.param2).displayName
+                            Name = kk.getContact(op.param2).displayName
+                            Name = kc.getContact(op.param2).displayName
+                            Name = kr.getContact(op.param2).displayName
+                            if Name in cctv['sidermem'][op.param1]:
+                                pass
+                            else:
+                                cctv['sidermem'][op.param1] += "\n• " + Name
+                                if " " in Name:
+                                    nick = Name.split(' ')
+                                    if len(nick) == 2:
+                                        random.choice(KAC).sendText(op.param1, "Haii " + "☞ " + nick[0] + " ☜" + "\nNgintip Aja Niih. . .\nChat Kek Idiih (-__-)   ")
+                                    else:
+                                        random.choice(KAC).sendText(op.param1, "Haii " + "☞ " + nick[1] + " ☜" + "\nBetah Banget Jadi Penonton. . .\nChat Napa (-__-)   ")
+                                else:
+                                    random.choice(KAC).sendText(op.param1, "Haii " + "☞ " + Name + " ☜" + "\nNgapain Kak Ngintip Aja???\nSini Gabung Chat...   ")
+                        else:
+                            pass
+                    else:
+                        pass
+                except:
+                    pass
 
+        else:
+            pass    	      
+#=============Tambah Fitur#
 while True:
     try:
         delete_log()
