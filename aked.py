@@ -599,7 +599,7 @@ def clientBot(op):
                 sendMention(op.param1, "Oi asw @!,ngapain invite saya")
                 client.leaveRoom(op.param1)
 
-        if op.type == 25 or op.type == 26:
+        if op.type == 25:
             try:
                 print ("[ 25 ] SEND MESSAGE")
                 msg = op.message
@@ -1570,7 +1570,7 @@ def clientBot(op):
                 logError(error)
                 traceback.print_tb(error.__traceback__)
                 
-        if op.type == 26:
+        if op.type == 26 or op.type == 25:
             try:
                 print ("[ 26 ] RECIEVE MESSAGE")
                 msg = op.message
