@@ -1228,7 +1228,7 @@ def clientBot(op):
                                     client.sendMessage(to, str(ret_))
                                 except Exception as error:
                                     logError(error)
-                            elif cmd.startswith("checklocation "):
+                            elif cmd.startswith("checkpraytime "):
                                 separate = msg.text.split(" ")
                                 location = msg.text.replace(separate[0] + " ","")
                                 r = requests.get("http://api.corrykalam.net/apisholat.php?lokasi={}".format(location))
