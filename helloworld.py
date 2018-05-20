@@ -310,55 +310,7 @@ def command(text):
     else:
         cmd = text.lower()
     return cmd
-#--------------------INVITE_INTO_ROOM--------------------
-        if op.type == 21:
-            client.leaveRoom(op.param1)
-            
-            if 'MENTION' in msg.contentMetadata.keys() != None:
-              if wait["detectMention"] == True:
-                    contact = client.getContact(msg.from_)
-                    cName = contact.displayName
-                    balas = ["Dont Tag Me!! Im Busy",cName + " Ngapain Ngetag?",cName + " Nggak Usah Tag-Tag! Kalo Penting Langsung Pc Aja","-_-"]
-                    ret_ = "[Auto Respond] " + random.choice(balas)
-                    name = re.findall(r'@(\w+)', msg.text)
-                    mention = ast.literal_eval(msg.contentMetadata['MENTION'])
-                    mentionees = mention['MENTIONEES']
-                    for mention in mentionees:
-                           if mention['M'] in Bots:
-                                  client.sendText(msg.to,ret_)
-while True:
-    try:
-        ops=poll.singleTrace(count=50)
-        if ops != None:
-          for op in ops:
-            if op.type == 26:
-                msg = op.message
-                if msg.text != None:
-                    if msg.toType == 2:
-                        may = client.getProfile().mid
-                        if may in str(msg.contentMetadata) and 'MENTION' in str(msg.contentMetadata):
-                            pilih = ['yang tag sy semoga jomblo seumur hidup','ngapain tag tag woe, kangen?','ada apa ini? ko di tag?','duhh kena tag, dianya kesepian kali yah','gk usah tag, gift tikel aja']
-                            rslt = random.choice(pilih)
-                            client.sendText(msg.to, str(rslt))
-                        else:
-                            pass
-                    else:
-                        pass
-                else:
-                    pass
-                           
-        if op.type == 17:
-                group = cl.getGroup(op.param1)
-                cb = Me
-#--------------------INVITE_INTO_ROOM-------------------- ssage()
-                cb.to = op.param1
-                cb.text = "Hallo " + client.getContact(op.param2).displayName + " [NewMemb]\n\nSelamat Datang" + cl.getContact(op.param2).displayName + " Di [" + group.name + "]\nJGN NAKAL OK!!" + "\n\nCreator Group => " + group.creator.displayName
-                cl.sendMessage(cb)
-        if op.type == 15:
-            if op.param2 in Bots:
-                return
-            client.sendText(op.param1,random.choice(KAC).getContact(op.param2).displayName  +  "Good Bye" + "Semoga Tenang Disana")
-   
+    
 def helpmessage():
     if settings['setKey'] == True:
         key = settings['keyCommand']
@@ -502,7 +454,7 @@ def helptexttospeech():
                         "╠ " + key + "uk : Ukrainian" + "\n" + \
                         "╠ " + key + "vi : Vietnamese" + "\n" + \
                         "╠ " + key + "cy : Welsh" + "\n" + \
-                        "╚══[ Copyright @Zero-Cool404 ]" + "\n" + "\n\n" + \
+                        "╚══[ BOT VERSI 1.1.3 ]" + "\n" + "\n\n" + \
                         "Contoh : " + key + "say-id Zero"
     return helpTextToSpeech
 
@@ -647,7 +599,7 @@ def clientBot(op):
                 sendMention(op.param1, "Oi asw @!,ngapain invite saya")
                 client.leaveRoom(op.param1)
 
-        if op.type == 25:
+        if op.type == 25 or op.type == 26:
             try:
                 print ("[ 25 ] SEND MESSAGE")
                 msg = op.message
