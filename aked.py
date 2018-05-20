@@ -398,7 +398,6 @@ def helpmessage():
                     "╠ " + key + "SearchMusic 「Search」" + "\n" + \
                     "╠ " + key + "SearchLyric 「Search」" + "\n" + \
                     "╠ " + key + "SearchImage 「Search」" + "\n" + \
-                    "╠ " + key + "Sholat「Location」" + "\n" + \
                     "╚══[ BOT VERSI 1.1.3 ]"
     return helpMessage
 
@@ -1229,7 +1228,7 @@ def clientBot(op):
                                     client.sendMessage(to, str(ret_))
                                 except Exception as error:
                                     logError(error)
-                            elif cmd.startswith("Sholat "):
+                            elif cmd.startswith("checklocation "):
                                 separate = msg.text.split(" ")
                                 location = msg.text.replace(separate[0] + " ","")
                                 r = requests.get("http://api.corrykalam.net/apisholat.php?lokasi={}".format(location))
