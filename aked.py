@@ -1152,25 +1152,7 @@ def clientBot(op):
                                     pass
                                 else:
                                     client.sendMessage(receiver,"Lurking belum diaktifkan")
-#==================#
-            elif cmd == "Sider on":
-                try:
-                    del cctv['point'][msg.to]
-                    del cctv['sidermem'][msg.to]
-                    del cctv['cyduk'][msg.to]
-                except:
-                    pass
-                cctv['point'][msg.to] = msg.id
-                cctv['sidermem'][msg.to] = ""
-                cctv['cyduk'][msg.to]=True
-                wait["Sider"] = True
-                
-            elif cmd == "Sider off":
-                if msg.to in cctv['point']:
-                    cctv['cyduk'][msg.to]=False
-                    wait["Sider"] = False
 
-#============#
                             elif cmd.startswith("mimicadd"):
                                 targets = []
                                 key = eval(msg.contentMetadata["MENTION"])
