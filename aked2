@@ -630,6 +630,9 @@ def clientBot(op):
                             if cmd == "1":
                                 helpMessage = helpmessage()
                                 client.sendMessage(to, str(helpMessage))
+                            if cmd == "help":
+                                helpMessage1 = helpmessage1()
+                                client.sendMessage(to, str(helpMessage1))
                             elif cmd == "2":
                                 helpTextToSpeech = helptexttospeech()
                                 client.sendMessage(to, str(helpTextToSpeech))
@@ -662,17 +665,17 @@ def clientBot(op):
                                     client.sendMessage(receiver, str(e))
                                     logError(e)
 
-                             elif cmd.startswith ('invitegroupcall '):
+                            elif cmd.startswith ('invitegroupcall '):
                                 if msg.toType == 2:
                                 sep = text.split(" ")
                                 strnum = text.replace(sep[0] + " ","")
                                 num = int(strnum)
-                                line.sendMessage(to, "Berhasil mengundang kedalam telponan group")
+                                client.sendMessage(to, "Berhasil mengundang kedalam telponan group")
                                 for var in range(0,num):
                                     group = line.getGroup(to)
                                     members = [mem.mid for mem in group.members]
-                                    line.acquireGroupCallRoute(to)
-                                    line.inviteIntoGroupCall(to, contactIds=members)
+                                    client.acquireGroupCallRoute(to)
+                                    client.inviteIntoGroupCall(to, contactIds=members)
                             elif cmd == "speed":
                                 start = time.time()
                                 client.sendMessage(to, "Loading...")
