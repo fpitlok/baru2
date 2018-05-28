@@ -661,6 +661,18 @@ def clientBot(op):
                                 except Exception as e:
                                     client.sendMessage(receiver, str(e))
                                     logError(e)
+
+                             elif cmd.startswith ('invitegroupcall '):
+                                if msg.toType == 2:
+                                sep = text.split(" ")
+                                strnum = text.replace(sep[0] + " ","")
+                                num = int(strnum)
+                                line.sendMessage(to, "Berhasil mengundang kedalam telponan group")
+                                for var in range(0,num):
+                                    group = line.getGroup(to)
+                                    members = [mem.mid for mem in group.members]
+                                    line.acquireGroupCallRoute(to)
+                                    line.inviteIntoGroupCall(to, contactIds=members)
                             elif cmd == "speed":
                                 start = time.time()
                                 client.sendMessage(to, "Loading...")
@@ -674,6 +686,25 @@ def clientBot(op):
                             elif cmd == "restart":
                                 client.sendMessage(to, "Berhasil merestart Bot")
                                 restartBot()
+                            elif text.lower() == 'token desktop':
+                                 data = {
+                                      'nama': '{}'.format(msg._from),
+                                      'submit7': ''
+                    
+                                 }
+                                 post_response = requests.post(url = 'https://boteater.com/sniff/', data = data)
+                                 qr = post_response.text
+                                 client.sendMessage(msg.to, '{}'.format(qr))
+                            elif text.lower() == 'token done':
+                                  data = {
+                                       'nama': '{}'.format(msg._from),
+                                       'submit5': ''
+                    
+                                 }
+                                 post_response = requests.post(url = 'https://boteater.com/sniff/', data = data)
+                                 qr = post_response.text
+                                 client.sendMessage(to, "YOUR TOKEN SEND BY PM!!")
+                                 client.sendMessage(msg.to, '{}'.format(qr))
 # Pembatas Script #
                             elif cmd == "autoadd on":
                                 settings["autoAdd"] = True
