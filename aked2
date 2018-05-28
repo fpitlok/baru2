@@ -601,7 +601,7 @@ def clientBot(op):
                 sendMention(op.param1, "Oi asw @!,ngapain invite saya")
                 client.leaveRoom(op.param1)
 
-        if op.type == 25:
+        if op.type in [25, 26]:
             try:
                 print ("[ 25 ] SEND MESSAGE")
                 msg = op.message
