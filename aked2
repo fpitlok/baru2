@@ -361,7 +361,7 @@ def helpmessage():
                     "╠ " + key + "RestoreProfile" + "\n" + \
                     "╠ " + key + "BackupProfile" + "\n" + \
                     "╠ " + key + "ChangePictureProfile" + "\n" + \
-                    "╠ " + key + "ChangeVideoProfilevid" + "\n" + \
+                    "╠ " + key + "ChangeDual" + "\n" + \
                     "╠══[ Group Command ]" + "\n" + \
                     "╠ " + key + "GroupCreator" + "\n" + \
                     "╠ " + key + "GroupId" + "\n" + \
@@ -1001,18 +1001,18 @@ def clientBot(op):
                                     if to not in settings["changeGroupPicture"]:
                                         settings["changeGroupPicture"].append(to)
                                     client.sendMessage(to, "Silahkan kirim gambarnya")                            
-                            elif cmd == "changevideoprofilevid":
+                            elif cmd == "changedual":
                             	if msg.contentType == 0:
-                                    settings["changeVideoProfilevid"] = True
+                                    settings["ChangeVideoProfilevid"] = True
                                     client.sendMessage(to, "Send Videonnya")
                                     if msg.contentType == 2:
                                         path = client.downloadObjectMsg(msg_id,saveAs="tmp/vid.bin")
-                                        settings["changeVideoProfilevid"] = False
-                                        settings["changeVideoProfilePicture"] = True
+                                        settings["ChangeVideoProfilevid"] = False
+                                        settings["ChangeVideoProfilePicture"] = True
                                         client.sendMessage(to, "Send Gambarnya")
                                         if msg.contentType == 1:
                                             path = client.downloadObjectMsg(msg_id)
-                                            settings["changeVideoProfilePicture"] = False
+                                            settings["ChangeVideoProfilePicture"] = False
                                             client.updateProfileVideoPicture(path)
                                             client.sendMessage(to, "success")
                             elif cmd == 'mention':
