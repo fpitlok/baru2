@@ -601,7 +601,7 @@ def clientBot(op):
                 sendMention(op.param1, "Oi asw @!,ngapain invite saya")
                 client.leaveRoom(op.param1)
 
-        if op.type == 26:
+        if op.type in [26, 25]:
             try:
                 print ("[ 25 ] SEND MESSAGE")
                 msg = op.message
@@ -627,10 +627,10 @@ def clientBot(op):
                             return
                         else:
                             cmd = command(text)
-                            if cmd == "help":
+                            if cmd == "1":
                                 helpMessage = helpmessage()
                                 client.sendMessage(to, str(helpMessage))
-                            elif cmd == "tts":
+                            elif cmd == "2":
                                 helpTextToSpeech = helptexttospeech()
                                 client.sendMessage(to, str(helpTextToSpeech))
                             elif cmd == "translate":
