@@ -312,6 +312,23 @@ def command(text):
     else:
         cmd = text.lower()
     return cmd
+       
+def helpmessage1():
+    if settings['setKey'] == True:
+        key = settings['keyCommand']
+    else:
+        key = ''
+    helpMessage1 =   "╔══[ Help Message ]" + "\n" + \
+                    "╠ " + key + "Mention" + "\n" + \
+                    "╠ " + key + "Lurking [ On / Off ] " + "\n" + \
+                    "╠ " + key + "Lurking" + "\n" + \
+                    "╠ " + key + "Translate" + "\n" + \
+                    "╠ " + key + "token desktop" + "\n" + \
+                    "╠ " + key + "token done" + "\n" + \
+                    "╠ " + key + "/call [Nomer Tujuan]" + "\n" + \
+                    "╠ " + key + "/sms [Nomer Tujuan] (text)" + "\n" + \
+                    "╚══[ GUNAKAN TIDAK TYPO ]"
+    return helpMessage1
     
 def helpmessage():
     if settings['setKey'] == True:
