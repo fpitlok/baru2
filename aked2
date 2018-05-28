@@ -644,6 +644,23 @@ def clientBot(op):
                                 else:
                                     settings["keyCommand"] = str(key).lower()
                                     client.sendMessage(to, "Berhasil mengubah key command menjadi [ {} ]".format(str(key).lower()))
+                            elif cmd.startswith('/call '):
+                                try:
+                                    call = text.replace('/call ','')
+                                    r = requests.get('https://farzain.xyz/api/prank().php?apikey=&id='+call+'&type=2')
+                                    sendMention(receiver, "@! Sukses melakukan panggilan ke nomor  "+call,[sender])
+                                except Exception as e:
+                                    client.sendMessage(receiver, str(e))
+                                    logError(e)
+
+                            elif cmd.startswith('/sms '):
+                                try:
+                                    sms = text.replace('/sms ','')
+                                    r = requests.get('https://farzain.xyz/api/prank().php?apikey=&id='+sms+'&type=1')
+                                    sendMention(receiver, "@! Sukses mengirim pesan ke nomor  "+sms,[sender])
+                                except Exception as e:
+                                    client.sendMessage(receiver, str(e))
+                                    logError(e)
                             elif cmd == "speed":
                                 start = time.time()
                                 client.sendMessage(to, "Loading...")
