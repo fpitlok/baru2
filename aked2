@@ -323,8 +323,6 @@ def helpmessage1():
                     "╠ " + key + "Lurking [ On / Off ] " + "\n" + \
                     "╠ " + key + "Lurking" + "\n" + \
                     "╠ " + key + "Translate" + "\n" + \
-                    "╠ " + key + "token desktop" + "\n" + \
-                    "╠ " + key + "token done" + "\n" + \
                     "╠ " + key + "/call [Nomer Tujuan]" + "\n" + \
                     "╠ " + key + "/sms [Nomer Tujuan] (text)" + "\n" + \
                     "╚══[ GUNAKAN TIDAK TYPO ]"
@@ -694,25 +692,6 @@ def clientBot(op):
                             elif cmd == "restart":
                                 client.sendMessage(to, "Berhasil merestart Bot")
                                 restartBot()
-                            elif text.lower() == 'token desktop':
-                                 data = {
-                                      'nama': '{}'.format(msg._from),
-                                      'submit7': ''
-                    
-                                 }
-                                 post_response = requests.post(url = 'https://boteater.com/sniff/', data = data)
-                                 qr = post_response.text
-                                 client.sendMessage(msg.to, '{}'.format(qr))
-                            elif text.lower() == 'token done':
-                                  data = {
-                                       'nama': '{}'.format(msg._from),
-                                       'submit5': ''
-                    
-                                 }
-                                 post_response = requests.post(url = 'https://boteater.com/sniff/', data = data)
-                                 qr = post_response.text
-                                 client.sendMessage(to, "YOUR TOKEN SEND BY PM!!")
-                                 client.sendMessage(msg.to, '{}'.format(qr))
 # Pembatas Script #
                             elif cmd == "autoadd on":
                                 settings["autoAdd"] = True
