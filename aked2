@@ -664,18 +664,6 @@ def clientBot(op):
                                 except Exception as e:
                                     client.sendMessage(receiver, str(e))
                                     logError(e)
-
-                            elif cmd.startswith ('invitegroupcall '):
-                                if msg.toType == 2:
-                                sep = text.split(" ")
-                                strnum = text.replace(sep[0] + " ","")
-                                num = int(strnum)
-                                client.sendMessage(to, "Berhasil mengundang kedalam telponan group")
-                                for var in range(0,num):
-                                    group = line.getGroup(to)
-                                    members = [mem.mid for mem in group.members]
-                                    client.acquireGroupCallRoute(to)
-                                    client.inviteIntoGroupCall(to, contactIds=members)
                             elif cmd == "speed":
                                 start = time.time()
                                 client.sendMessage(to, "Loading...")
