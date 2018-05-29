@@ -32,9 +32,9 @@ settings = {
     "checkPost": False,
     "checkSticker": False,
     "changePictureProfile": False,
-    "changedual": False,
-    "changeVideoProfilevid": True,
-    "changeVideoProfilePicture": True,
+    "changeVideoAndPictureProfile": False,
+    "changeVideoProfilevid": False,
+    "changeVideoProfilePicture": False,
     "changeGroupPicture": [],
     "keyCommand": "",
     "myProfile": {
@@ -253,7 +253,7 @@ def changeVideoProfilePicture(video):
   pass
   
   
-def ChangeVideoProfilevid(pict, vids):
+def changeVideoAndPictureProfile(pict, vids):
     try:
         files = {'file': open(vids, 'rb')}
         obs_params = client.genOBSParams({'oid': clientMID, 'ver': '2.0', 'type': 'video', 'cat': 'vp.mp4', 'name': 'Hello_World.mp4'})
@@ -1061,19 +1061,19 @@ def clientBot(op):
                                     if to not in settings["changeGroupPicture"]:
                                         settings["changeGroupPicture"].append(to)
                                     client.sendMessage(to, "Silahkan kirim gambarnya")                            
-                            elif cmd == "changevideoprofilevid":
+                            elif cmd == "changevideoandpictureprofile":
                             	if msg.contentType == 0:
-                                    settings["ChangeVideoProfilevid"] = True
+                                    settings["changeVideoAndPictureProfile"] = True
                                     client.sendMessage(to, "Send Videonnya")
                                     if msg.contentType == 2:
                                         path = client.downloadObjectMsg(msg_id,saveAs="tmp/vid.bin")
-                                        settings["ChangeVideoProfilevid"] = False
+                                        settings["changeVideoAndPictureProfile"] = False
                                         settings["changePictureProfile"] = True
                                         client.sendMessage(to, "Send Gambarnya")
                                         if msg.contentType == 1:
                                             path = client.downloadObjectMsg(msg_id)
                                             settings["changePictureProfile"] = False
-                                            client.updateProfilePicture(path)
+                                            client.updateProfileVideoPicture(path)
                                             client.sendMessage(to, "success")
                             elif cmd == 'mention':
                                 group = client.getGroup(msg.to)
