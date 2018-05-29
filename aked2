@@ -23,7 +23,7 @@ msg_dict = {}
 
 settings = {
     "autoAdd": False,
-    "autoJoin": False,
+    "autoJoin": True,
     "autoLeave": False,
     "autoRead": False,
     "autoRespon": False,
@@ -32,8 +32,8 @@ settings = {
     "checkPost": False,
     "checkSticker": False,
     "changePictureProfile": False,
-    "changeVideoProfilevid": False,
-    "changeVideoProfilePicture": False,
+    "changeVideoProfilevid": True,
+    "changeVideoProfilePicture": True,
     "changeGroupPicture": [],
     "keyCommand": "",
     "myProfile": {
@@ -243,6 +243,12 @@ def restartBot():
     os.execl(python, python, *sys.argv)
     
 def changedual(poto):
+  pass    
+  
+def changeVideoProfilevid(poto):
+  pass  
+  
+def changeVideoProfilePicture(poto):
   pass
     
 def logError(text):
