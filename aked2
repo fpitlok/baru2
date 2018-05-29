@@ -242,6 +242,9 @@ def restartBot():
     python = sys.executable
     os.execl(python, python, *sys.argv)
     
+def changedual(poto):
+  pass
+    
 def logError(text):
     client.log("[ ERROR ] {}".format(str(text)))
     tz = pytz.timezone("Asia/Jakarta")
