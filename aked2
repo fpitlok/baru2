@@ -266,8 +266,8 @@ def ChangeVideoProfilevid(pict, vids):
     except Exception as e:
         raise Exception("Error change video and picture profile %s"%str(e))
 
- @loggedIn
- def updateProfileVideoPicture(self, path):
+#@loggedIn
+def updateProfileVideoPicture(self, path):
     try:
         from ffmpy import FFmpeg
         files = {'file': open(path, 'rb')}
