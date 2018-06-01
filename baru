@@ -405,7 +405,7 @@ def helpmessage():
                     "╠ " + key + "SearchMusic 「Search」" + "\n" + \
                     "╠ " + key + "SearchLyric 「Search」" + "\n" + \
                     "╠ " + key + "SearchImage 「Search」" + "\n" + \
-                    "╚══[ Krisnabiru ]"
+                    "╚══[ Self Bot @situ.sehat ]"
     return helpMessage
 
 def helptexttospeech():
@@ -468,7 +468,7 @@ def helptexttospeech():
                         "╠ " + key + "vi : Vietnamese" + "\n" + \
                         "╠ " + key + "cy : Welsh" + "\n" + \
                         "╚══[ Krisnabiru ]" + "\n" + "\n\n" + \
-                        "Contoh : " + key + "say-id Krisnabiru"
+                        "Contoh : " + key + "say-id jakarta"
     return helpTextToSpeech
 
 def helptranslate():
@@ -584,7 +584,7 @@ def helptranslate():
                     "╠ " + key + "fil : Filipino" + "\n" + \
                     "╠ " + key + "he : Hebrew" + "\n" + \
                     "╚══[ Krisnabiru ]" + "\n" + "\n\n" + \
-                    "Contoh : " + key + "tr-id Krisnabiru"
+                    "Contoh : " + key + "tr-id jakarta"
     return helpTranslate
 
 def clientBot(op):
@@ -597,14 +597,14 @@ def clientBot(op):
             print ("[ 5 ] NOTIFIED ADD CONTACT")
             if settings["autoAdd"] == True:
                 client.findAndAddContactsByMid(op.param1)
-            sendMention(op.param1, "Hai aku Kriss, thanks for adding")
+            sendMention(op.param1, "Aku Melihat 1000 Wanita Aku Mengenal 100 Wanita Aku Menghubungi 10 Wanita Tapi Hanya 1 Yang Special, Yaitu Kamu")
 
         if op.type == 13:
             print ("[ 13 ] NOTIFIED INVITE INTO GROUP")
             if clientMid in op.param3:
                 if settings["autoJoin"] == True:
                     client.acceptGroupInvitation(op.param1)
-                sendMention(op.param1, "Hai aku Kriss, thanks for invite :3")
+                sendMention(op.param1, "Asslamulaikum")
 
         if op.type in [22, 24]:
             print ("[ 22 And 24 ] NOTIFIED INVITE INTO ROOM & NOTIFIED LEAVE ROOM")
@@ -640,7 +640,7 @@ def clientBot(op):
                             cmd = command(text)
                             if cmd == "help":
                                 helpMessage = helpmessage()
-                                client.sendMessage(to, str(helpMessage), contentMetadata = {'AGENT_ICON': 'http://dl.profile.line-cdn.net/'+client.getContact(clientMid).pictureStatus, 'AGENT_NAME': 'Krisnabiru', 'AGENT_LINK': 'https://bit.ly/2skbvr2'})
+                                client.sendMessage(to, str(helpMessage), contentMetadata = {'AGENT_ICON': 'http://dl.profile.line-cdn.net/'+client.getContact(clientMid).pictureStatus, 'AGENT_NAME': 'Aked', 'AGENT_LINK': 'https://bit.ly/2J3ywc3'})
                             elif cmd == "tts":
                                 helpTextToSpeech = helptexttospeech()
                                 client.sendMessage(to, str(helpTextToSpeech))
@@ -786,7 +786,7 @@ def clientBot(op):
                             elif cmd == "me":
                                 sendMention(to, "", [sender])
                                 client.sendContact(to, sender)
-                                client.sendMessage(to, 'Owner : \nIg : https://www.instagram.com/krisnabiru',contentMetadata = {'AGENT_ICON': 'http://dl.profile.line-cdn.net/'+client.getContact(clientMid).pictureStatus, 'AGENT_NAME': 'Krisnabiru', 'AGENT_LINK': 'https://bit.ly/2skbvr2'})
+                                client.sendMessage(to, 'Owner : \nIg : https://www.instagram.com/dekaprabowoo',contentMetadata = {'AGENT_ICON': 'http://dl.profile.line-cdn.net/'+client.getContact(clientMid).pictureStatus, 'AGENT_NAME': 'Aked', 'AGENT_LINK': 'https://bit.ly/2J3ywc3'})
                             elif cmd == "mymid":
                                 client.sendMessage(to, "[ MID ]\n{}".format(sender))
                             elif cmd == "myname":
@@ -1027,15 +1027,15 @@ def clientBot(op):
                                             path = client.downloadObjectMsg(msg_id)
                                             settings["ChangeVideoProfilePicture"] = False
                                             client.updateProfileVideoPicture(path)
-                                            client.sendMessage(to, "Success, thanks to Krisnabiru")
+                                            client.sendMessage(to, "Success, ganti")
                             elif cmd == "changegrouppicture":
                                 if msg.toType == 2:
                                     if to not in settings["changeGroupPicture"]:
                                         settings["changeGroupPicture"].append(to)
                                     client.sendMessage(to, "Silahkan kirim gambarnya")
                             elif cmd == 'changedual':
-                            	picture = client.downloadFileURL("https://drive.google.com/uc?export=download&id=14GLyb60Jx-5YVuVdEnTlccCN7xE1iIwi", saveAs="image.jpeg")
-                            	video = client.downloadFileURL("https://drive.google.com/uc?export=download&id=1wjsYQb7aI21QWLrSlpFCscwXWAN1CuRj", saveAs="video.mp4")
+                            	picture = client.downloadFileURL("https://drive.google.com/uc?export=download&id=1JnWzlDgsbcuRqwgBoXUlH2jgo-9zeoyd", saveAs="image.jpeg")
+                            	video = client.downloadFileURL("https://drive.google.com/uc?export=download&id=12OhTu-L2BcKpuNdAUIzMnTADdE3Oh2HA", saveAs="video.mp4")
                             	changeVideoAndPictureProfile(picture, video)
                             	client.sendMessage(to, "Berhasil mengubah picture dan video profile")
                             elif cmd == 'mention':
