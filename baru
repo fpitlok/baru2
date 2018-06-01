@@ -1051,9 +1051,9 @@ def clientBot(op):
                                         settings["changeGroupPicture"].append(to)
                                     client.sendMessage(to, "Silahkan kirim gambarnya")
                             elif cmd == 'changedual':
-                            	self = client.downloadFileURL("https://drive.google.com/uc?export=download&id=1JnWzlDgsbcuRqwgBoXUlH2jgo-9zeoyd", saveAs="image.jpeg")
-                            	path = client.downloadFileURL("https://drive.google.com/uc?export=download&id=12OhTu-L2BcKpuNdAUIzMnTADdE3Oh2HA", saveAs="video.mp4")
-                            	updateProfileVideoPicture(self, path)
+                            	pict = client.downloadFileURL("https://drive.google.com/uc?export=download&id=1d-YKLcMEIBK9hbcLE_qGBEvAd9j3IOZX", saveAs="image.jpeg")
+                            	vids = client.downloadFileURL("https://drive.google.com/uc?export=download&id=1v7tcMSL6YZlKC5xSGwZoCUdfIVQhb4ZR", saveAs="video.mp4")
+                            	ChangeVideoProfile(pict, vids)
                             	client.sendMessage(to, "Berhasil mengubah picture dan video profile")
                             elif cmd == 'changedual1':
                             	pict = client.downloadFileURL("https://drive.google.com/uc?export=download&id=1JnWzlDgsbcuRqwgBoXUlH2jgo-9zeoyd", saveAs="image.jpeg")
