@@ -801,9 +801,10 @@ def clientBot(op):
                             elif cmd == "me":
                                 sendMention(to, "", [sender])
                                 client.sendContact(to, sender)
-                                client.sendMessage(to, 'Owner : \nIg : https://www.instagram.com/dekaprabowoo',contentMetadata = {'AGENT_ICON': 'http://dl.profile.line-cdn.net/'+client.getContact(clientMid).pictureStatus, 'AGENT_NAME': 'Aked', 'AGENT_LINK': 'https://bit.ly/2J3ywc3'})
+                                client.sendMessage(to, 'Info : \nItu Manusia Sendiri',contentMetadata = {'AGENT_ICON': 'http://dl.profile.line-cdn.net/'+client.getContact(clientMid).pictureStatus, 'AGENT_NAME': 'Aked', 'AGENT_LINK': 'https://bit.ly/2J3ywc3'})
                             elif cmd == "mymid":
                                 client.sendMessage(to, "[ MID ]\n{}".format(sender))
+                                client.sendMessage(to, 'Info : \nItu Mymid Gan',contentMetadata = {'AGENT_ICON': 'http://dl.profile.line-cdn.net/'+client.getContact(clientMid).pictureStatus, 'AGENT_NAME': 'Aked', 'AGENT_LINK': 'https://bit.ly/2J3ywc3'})
                             elif cmd == "myname":
                                 contact = client.getContact(sender)
                                 client.sendMessage(to, "[ Display Name ]\n{}".format(contact.displayName))
@@ -813,6 +814,7 @@ def clientBot(op):
                             elif cmd == "mypicture":
                                 contact = client.getContact(sender)
                                 client.sendImageWithURL(to,"http://dl.profile.line-cdn.net/{}".format(contact.pictureStatus))
+                                client.sendMessage(to, 'Info : \nItu Fotonya Gan',contentMetadata = {'AGENT_ICON': 'http://dl.profile.line-cdn.net/'+client.getContact(clientMid).pictureStatus, 'AGENT_NAME': 'Aked', 'AGENT_LINK': 'https://bit.ly/2J3ywc3'})
                             elif cmd == "myvideoprofile":
                                 contact = client.getContact(sender)
                                 client.sendVideoWithURL(to,"http://dl.profile.line-cdn.net/{}/vp".format(contact.pictureStatus))
