@@ -259,7 +259,7 @@ def logError(text):
     with open("logError.txt","a") as error:
         error.write("\n[ {} ] {}".format(str(time), text))
         
-def changeVideoAndPictureProfile(pict, vids):
+def ChangeVideoProfile(pict, vids):
     try:
         files = {'file': open(vids, 'rb')}
         obs_params = client.genOBSParams({'oid': clientMid, 'ver': '2.0', 'type': 'video', 'cat': 'vp.mp4', 'name': 'Hello_World.mp4'})
@@ -271,6 +271,21 @@ def changeVideoAndPictureProfile(pict, vids):
         return "Success update profile"
     except Exception as e:
         raise Exception("Error change video and picture profile %s"%str(e))
+
+def updateProfileVideoPicture(self, path):
+    try:
+        from ffmpy import FFmpeg
+        files = {'file': open(path, 'rb')}
+        data = {'params': self.genOBSParams({'oid': self.profile.mid,'ver': '2.0','type': 'video','cat': 'vp.mp4'})}
+        r_vp = self.server.postContent(self.server.LINE_OBS_DOMAIN + '/talk/vp/upload.nhn', data=data, files=files)
+        if r_vp.status_code != 201:
+            raise Exception('Update profile video picture failure.')
+        path_p = self.genTempFile('path')
+        ff = FFmpeg(inputs={'%s' % path: None}, outputs={'%s' % path_p: ['-ss', '00:00:2', '-vframes', '1']})
+        ff.run()
+        self.updateProfilePicture(path_p, 'vp')
+    except:
+        raise Exception('You should install FFmpeg and ffmpy from pypi')
 
 def cTime_to_datetime(unixtime):
     return datetime.fromtimestamp(int(str(unixtime)[:len(str(unixtime))-3]))
