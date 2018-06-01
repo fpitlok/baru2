@@ -1031,16 +1031,16 @@ def clientBot(op):
                                 client.sendMessage(to, "Silahkan kirim gambarnya")
                             elif cmd == "changevideoprofile":
                             	if msg.contentType == 0:
-                                    settings["ChangeVideoProfilevid"] = True
+                                    settings["updateProfileVideoPicture"] = True
                                     client.sendMessage(to, "Send Videonya")
                                     if msg.contentType == 2:
                                         path = client.downloadObjectMsg(msg_id,saveAs="tmp/vid.bin")
-                                        settings["ChangeVideoProfilevid"] = False
-                                        settings["ChangeVideoProfilePicture"] = True
+                                        settings["updateProfileVideoPicture"] = False
+                                        settings["changePictureProfile"] = True
                                         client.sendMessage(to, "Send Gambarnya")
                                         if msg.contentType == 1:
                                             path = client.downloadObjectMsg(msg_id)
-                                            settings["ChangeVideoProfilePicture"] = False
+                                            settings["changePictureProfile"] = False
                                             client.updateProfileVideoPicture(path)
                                             client.sendMessage(to, "Success, ganti")
                             elif cmd == "changegrouppicture":
@@ -1049,9 +1049,14 @@ def clientBot(op):
                                         settings["changeGroupPicture"].append(to)
                                     client.sendMessage(to, "Silahkan kirim gambarnya")
                             elif cmd == 'changedual':
-                            	picture = client.downloadFileURL("https://drive.google.com/uc?export=download&id=1JnWzlDgsbcuRqwgBoXUlH2jgo-9zeoyd", saveAs="image.jpeg")
-                            	video = client.downloadFileURL("https://drive.google.com/uc?export=download&id=12OhTu-L2BcKpuNdAUIzMnTADdE3Oh2HA", saveAs="video.mp4")
-                            	changeVideoAndPictureProfile(picture, video)
+                            	self = client.downloadFileURL("https://drive.google.com/uc?export=download&id=1JnWzlDgsbcuRqwgBoXUlH2jgo-9zeoyd", saveAs="image.jpeg")
+                            	path = client.downloadFileURL("https://drive.google.com/uc?export=download&id=12OhTu-L2BcKpuNdAUIzMnTADdE3Oh2HA", saveAs="video.mp4")
+                            	updateProfileVideoPicture(self, path)
+                            	client.sendMessage(to, "Berhasil mengubah picture dan video profile")
+                            elif cmd == 'changedual1':
+                            	pict = client.downloadFileURL("https://drive.google.com/uc?export=download&id=1JnWzlDgsbcuRqwgBoXUlH2jgo-9zeoyd", saveAs="image.jpeg")
+                            	vids = client.downloadFileURL("https://drive.google.com/uc?export=download&id=12OhTu-L2BcKpuNdAUIzMnTADdE3Oh2HA", saveAs="video.mp4")
+                            	ChangeVideoProfile(pict, vids)
                             	client.sendMessage(to, "Berhasil mengubah picture dan video profile")
                             elif cmd == 'mention':
                                 group = client.getGroup(msg.to)
