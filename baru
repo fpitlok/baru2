@@ -55,12 +55,6 @@ settings = {
     "changePictureProfile": False,
     "changeGroupPicture": [],
     "keyCommand": "",
-    "myProfile": {
-        "displayName": "",
-        "coverId": "",
-        "pictureStatus": "",
-        "statusMessage": ""
-    },
     "mimic": {
         "copy": False,
         "status": False,
@@ -252,6 +246,13 @@ try:
         msg_dict = json.loads(f.read())
 except:
     print("Couldn't read Log data")
+
+myProfile = {
+        "displayName": "",
+        "coverId": "",
+        "pictureStatus": "",
+        "statusMessage": ""
+}
     
 settings["myProfile"]["displayName"] = clientProfile.displayName
 settings["myProfile"]["statusMessage"] = clientProfile.statusMessage
@@ -636,7 +637,7 @@ def clientBot(op):
             print ("[ 5 ] NOTIFIED ADD CONTACT")
             if settings["autoAdd"] == True:
                 client.findAndAddContactsByMid(op.param1)
-            sendMention(op.param1, "Aku Melihat 1000 Wanita Aku Mengenal 100 Wanita Aku Menghubungi 10 Wanita Tapi Hanya 1 Yang Special, Yaitu Kamu")
+            sendMention(op.param1, "Aku Melihat 1000 Wanita \nAku Mengenal 100 Wanita \nAku Menghubungi 10 Wanita \nTapi Hanya 1 Yang Special \nYaitu Kamu")
 
         if op.type == 13:
             print ("[ 13 ] NOTIFIED INVITE INTO GROUP")
