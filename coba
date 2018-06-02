@@ -24,6 +24,7 @@ msg_dict = {}
 settings = {
     "autoAdd": False,
     "autoJoin": False,
+    "Sambutan": True,
     "autoLeave": False,
     "autoRead": False,
     "autoRespon": False,
