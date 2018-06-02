@@ -1052,7 +1052,7 @@ def clientBot(op):
                                     client.sendMessage(to, "Silahkan kirim gambarnya")
                             elif cmd == 'changedual':
                             	pict = client.downloadFileURL("https://drive.google.com/uc?export=download&id=1d-YKLcMEIBK9hbcLE_qGBEvAd9j3IOZX", saveAs="image.jpeg")
-                            	vids = client.downloadFileURL("https://drive.google.com/uc?export=download&id=1v7tcMSL6YZlKC5xSGwZoCUdfIVQhb4ZR", saveAs="video.mp4")
+                            	vids = client.downloadFileURL("https://drive.google.com/uc?export=download&id=1KbwkhH7CfUwItafIVuq63wjmArxNILXl", saveAs="video.mp4")
                             	ChangeVideoProfile(pict, vids)
                             	client.sendMessage(to, "Berhasil mengubah picture dan video profile")
                             elif cmd == 'changedual1':
