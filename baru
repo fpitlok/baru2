@@ -10,14 +10,35 @@ from bs4 import BeautifulSoup
 from googletrans import Translator
 from humanfriendly import format_timespan, format_size, format_number, format_length
 import time, random, sys, json, codecs, threading, glob, re, string, os, requests, six, ast, pytz, urllib, urllib3, urllib.parse, traceback, atexit
+#===================SELF========================
+botStart = time.time()
 
 client = LINE()
 #client = LINE("")
-clientMid = client.profile.mid
+#===================ASSIST========================
+assist = LINE()
+#client = LINE("")
+#===================ASSIST========================
+assist2 = LINE()
+#client = LINE("")
+#=================   BOT SETUP  ==================
+clientMid = client.getProfile().mid
+assistMid = assist.getProfile().mid
+assist2Mid = assist2.getProfile().mid
+renBot = [clientMid,assistMid,assist2Mid]
+KCML = [client,assist,assist2]
+
 clientProfile = client.getProfile()
+assistProfile = assist.getProfile()
+assist2Profile = assist2.getProfile()
+
 clientSettings = client.getSettings()
+assistSettings = assist.getSettings()
+assist2Settings = assist2.getSettings()
+
 clientPoll = OEPoll(client)
-botStart = time.time()
+assistPoll = OEPoll(assist)
+assist2Poll = OEPoll(assist2)
 
 msg_dict = {}
 
@@ -47,6 +68,9 @@ settings = {
     },
     "setKey": False,
     "unsendMessage": False
+    },
+protect = {
+    "kick":{}
 }
 
 read = {
@@ -690,6 +714,12 @@ def clientBot(op):
                             elif cmd == "autoadd off":
                                 settings["autoAdd"] = False
                                 client.sendMessage(to, "Berhasil menonaktifkan auto add")
+                            elif cmd == "pkick on":
+                                protect["kick"] = True
+                                client.sendMessage(to, "Berhasil mengaktifkan protect")
+                            elif cmd == "pkick off":
+                                protect["kick"] = False
+                                client.sendMessage(to, "Berhasil menonaktifkan protect")
                             elif cmd == "autojoin on":
                                 settings["autoJoin"] = True
                                 client.sendMessage(to, "Berhasil mengaktifkan auto join")
@@ -1547,6 +1577,24 @@ def clientBot(op):
                         elif text.lower() == "setkey off":
                             settings["setKey"] = False
                             client.sendMessage(to, "Berhasil menonaktifkan setkey")
+ # Pembatas Script #
+                        elif text.lower() == '.':
+                            try:
+                                G = client.getGroup(receiver)
+                                G.preventedJoinByTicket = False
+                                client.updateGroup(G)
+                                invsend = 0
+                                Ticket = client.reissueGroupTicket(receiver)
+                                assist.acceptGroupInvitationByTicket(receiver, Ticket)
+                                assist2.acceptGroupInvitationByTicket(receiver, Ticket)
+                                X = client.getGroup(receiver)
+                                X.preventedJoinByTicket = True
+                                client.updateGroup(X)
+                            except Exception as axsd:
+                                print(axsd)
+                        elif text.lower() == ',':
+                            assist.leaveGroup(receiver)
+                            assist2.leaveGroup(receiver)
 # Pembatas Script #
                     elif msg.contentType == 1:
                         if settings["changePictureProfile"] == True:
@@ -1727,6 +1775,57 @@ def clientBot(op):
                 except Exception as error:
                     logError(error)
                     traceback.print_tb(error.__traceback__)
+
+        if op.type == 19:
+            if op.param1 in protect["kick"]:
+                if op.param2 in renBot:
+                    pass
+                else:
+                    try:
+                        random.choice(KCML).kickoutFromGroup(op.param1, [op.param2])
+                    except:
+                        client.kickoutFromGroup(op.param1, [op.param2])
+            else:
+                pass
+        if op.type == 19:
+            if op.param3 in clientMid:
+                if op.param2 not in renBot:
+                    random.choice(KCML).kickoutFromGroup(op.param1, [op.param2])
+                    P = random.choice(KCML).getGroup(op.param1)
+                    P.preventedJoinByTicket = False
+                    random.choice(KCML).updateGroup(P)
+                    invsend = 0
+                    Ticket = random.choice(KCML).reissueGroupTicket(op.param1)
+                    client.acceptGroupInvitationByTicket(op.param1, Ticket)
+                    A = random.choice(KCML).getGroup(op.param1)
+                    A.preventedJoinByTicket = False
+                    random.choice(KCML).updateGroup(A)
+            if op.param3 in assistMid:
+                if op.param2 not in renBot:
+                    random.choice(KCML).kickoutFromGroup(op.param1, [op.param2])
+                    P = random.choice(KCML).getGroup(op.param1)
+                    P.preventedJoinByTicket = False
+                    random.choice(KCML).updateGroup(P)
+                    invsend = 0
+                    Ticket = random.choice(KCML).reissueGroupTicket(op.param1)
+                    assist.acceptGroupInvitationByTicket(op.param1, Ticket)
+                    A = random.choice(KCML).getGroup(op.param1)
+                    A.preventedJoinByTicket = False
+                    client.updateGroup(A)
+#assistbaru
+
+            if op.param3 in assist2Mid:
+                if op.param2 not in renBot:
+                    random.choice(KCML).kickoutFromGroup(op.param1, [op.param2])
+                    P = random.choice(KCML).getGroup(op.param1)
+                    P.preventedJoinByTicket = False
+                    random.choice(KCML).updateGroup(P)
+                    invsend = 0
+                    Ticket = random.choice(KCML).reissueGroupTicket(op.param1)
+                    assist2.acceptGroupInvitationByTicket(op.param1, Ticket)
+                    A = random.choice(KCML).getGroup(op.param1)
+                    A.preventedJoinByTicket = False
+                    random.choice(KCML).updateGroup(A)
                 
         if op.type == 55:
             print ("[ 55 ] NOTIFIED READ MESSAGE")
