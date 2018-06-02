@@ -249,16 +249,12 @@ except:
 
 myProfile = {
         "displayName": "",
-        "coverId": "",
         "pictureStatus": "",
         "statusMessage": ""
-}
-    
-settings["myProfile"]["displayName"] = clientProfile.displayName
-settings["myProfile"]["statusMessage"] = clientProfile.statusMessage
-settings["myProfile"]["pictureStatus"] = clientProfile.pictureStatus
-coverId = client.getProfileDetail()["result"]["objectId"]
-settings["myProfile"]["coverId"] = coverId
+}   
+myProfile["displayName"] = clientProfile.displayName
+myProfile["statusMessage"] = clientProfile.statusMessage
+myProfile["pictureStatus"] = clientProfile.pictureStatus
 
 def restartBot():
     print ("[ INFO ] BOT RESTART")
