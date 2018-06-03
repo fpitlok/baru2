@@ -749,6 +749,12 @@ def clientBot(op):
                             elif cmd == "autoadd off":
                                 settings["autoAdd"] = False
                                 client.sendMessage(to, "Berhasil menonaktifkan auto add")
+                            elif cmd == "sambut on":
+                                settings["Sambutan"] = True
+                                client.sendMessage(to, "Berhasil mengaktifkan auto sambut")
+                            elif cmd == "sambut off":
+                                settings["Sambutan"] = False
+                                client.sendMessage(to, "Berhasil menonaktifkan auto sambut")
                             elif cmd == "autojoin on":
                                 settings["autoJoin"] = True
                                 client.sendMessage(to, "Berhasil mengaktifkan auto join")
@@ -1786,17 +1792,13 @@ def clientBot(op):
 
 
         if op.type == 17:
-          if settings["Sambutan"] == True:
-            if op.param2 not in admin:
-                return
-            ginfo = client.getGroup(op.param1)
-            contact = client.getContact(op.param2)
-            image = "http://dl.profile.line-cdn.net/" + contact.pictureStatus
-            c = Message(to=op.param1, from_=None, text=None, contentType=13)
-            c.contentMetadata={'mid':op.param2}
-            client.sendMessage(c)
-            client.sendText(op.param1,"Hallo " + cl.getContact(op.param2).displayName + "\nWelcome To ☞ " + str(ginfo.name) + " ☜" + "\nBudayakan Cek Note\nDan Semoga Betah Disini ^_^")
-            client.sendImageWithURL(op.param1,image)
+          if op.param2 not in Bots:
+            return
+          ginfo = cl.getGroup(op.param1)
+          cl.sendText(op.param1, "Selamat Datang Di Grup  " + ">>>" + str(ginfo.name) + "<<<" + "\n" + "Founder Grup " + str(ginfo.name) + " :\n" + ginfo.creator.displayName + "\n\n" + "Budayakan Baca Note !!! yah Ka 😊\nSemoga Betah Kk 😘")
+          #cl.sendText(op.param1, "Founder Grup " + str(ginfo.name) + " :\n" + ginfo.creator.displayName)
+          #cl.choice(KAC).sendText(op.param1,"Budayakan Baca Note !!! yah Ka 😊\nSemoga Betah Kk 😘")
+          #print "MEMBER HAS JOIN THE GROUP"
 
         if op.type == 15:
           if settings["Sambutan"] == True:
